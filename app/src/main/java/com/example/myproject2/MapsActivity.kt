@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import android.widget.Toast
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
@@ -81,6 +82,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+
+        val button_take_picture : Button = findViewById(R.id.take_picture_button)
+        button_take_picture.setOnClickListener {
+            val intent = Intent(this, PictureActivity :: class.java)
+            startActivity(intent)
+        }
+
         service = this.getSystemService(LOCATION_SERVICE) as LocationManager
         enabled = service!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
